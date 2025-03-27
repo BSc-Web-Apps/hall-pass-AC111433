@@ -1,16 +1,23 @@
 import React from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, ScrollView } from "react-native";
 import { Checkbox } from "~/components/ui/checkbox";
+import Task from "~/components/task";
 
-export default function HomeScreen() {
-  const [checked, setChecked] = React.useState(false);
+const TaskList = () => {
+  const tasks = [
+    { id: 1, name: "Task 1" },
+    { id: 2, name: "Task 2" },
+    { id: 3, name: "Task 3" },
+    { id: 4, name: "Task 4" },
+  ];
 
   return (
-    <SafeAreaView className="flex-1 bg-black justify-center items-center">
-      <View className="w-4/5 border-2  rounded-lg p-4 flex-row items-center space-x-3 bg-gray-900">
-        <Checkbox checked={checked} onCheckedChange={setChecked} />
-        <Text className="text-white text-lg">Feed the cat</Text>
-      </View>
-    </SafeAreaView>
+    <ScrollView>
+      {tasks.map((task) => (
+        <Task key={task.id} taskName={task.name} />
+      ))}
+    </ScrollView>
   );
-}
+};
+
+export default TaskList;
