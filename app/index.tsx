@@ -12,7 +12,7 @@ const TaskList = () => {
   ];
 
   return (
-    <ScrollView>
+    <ScrollView className="bg-background min-h-screen">
       {tasks.map((task) => (
         <Task key={task.id} taskName={task.name} />
       ))}
