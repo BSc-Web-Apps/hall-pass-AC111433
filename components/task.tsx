@@ -1,19 +1,42 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Checkbox } from "~/components/ui/checkbox";
+import clsx from "clsx"; // Optional: use for conditional class names
 
 interface TaskProps {
-  taskName: string;
+  title: string;
+  description?: string;
+  completed: boolean;
+  onToggle: () => void;
 }
 
-const Task = ({ taskName }: TaskProps) => {
-  const [checked, setChecked] = useState(false); // state is local to each Task component
-
+const Task = ({ title, description, completed, onToggle }: TaskProps) => {
   return (
-    <View className="border-2 rounded-lg p-6 flex-row items-center space-x-3 bg-gray-900">
-      <Checkbox checked={checked} onCheckedChange={setChecked} />
-      <Text style={{ color: "white", fontSize: 16 }}>{taskName}</Text>
-    </View>
+    <TouchableOpacity onPress={onToggle}>
+      <View className="flex-row items-start py-6 border-b border-neutral-700">
+        <Checkbox checked={completed} onCheckedChange={onToggle} />
+        <View className="ml-3">
+          <Text
+            className={clsx(
+              "text-base text-white",
+              completed && "line-through text-neutral-500"
+            )}
+          >
+            {title}
+          </Text>
+          {description && (
+            <Text
+              className={clsx(
+                "text-sm text-neutral-400",
+                completed && "line-through"
+              )}
+            >
+              {description}
+            </Text>
+          )}
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
