@@ -68,7 +68,7 @@ const TaskList = () => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
   return (
-    <View className="bg-background min-h-screen">
+    <View className="bg-background min-h-[calc(100vh-47px)]">
       <ScrollView className="flex-1 px-4 pt-4 pb-10">
         <View className="pt-28 pb-12">
           <Text className="text-white text-6xl font-bold text-center">
@@ -104,7 +104,7 @@ const TaskList = () => {
         <TouchableOpacity
           onPress={addTask}
           style={{
-            backgroundColor: "#1E90FF", // Blue color
+            backgroundColor: "hsl(11, 100%, 60%)", // Blue color
             width: 60,
             height: 60,
             borderRadius: 30,
